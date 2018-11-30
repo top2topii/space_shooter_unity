@@ -30,7 +30,13 @@ public class Player : MonoBehaviour {
         float distanceY = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
         
         //이동량만큼 실제로 이동을 반영합니다.
-        this.gameObject.transform.Translate(distanceX, distanceY, 0);
+        transform.Translate(distanceX, distanceY, 0);
+
+        Vector3 viewPos = Camera.main.WorldToViewportPoint(transform.position); //캐릭터의 월드 좌표를 뷰포트 좌표계로 변환해준다.
+        viewPos.x = Mathf.Clamp01(viewPos.x); //x값을 0이상, 1이하로 제한한다.
+        viewPos.y = Mathf.Clamp01(viewPos.y); //y값을 0이상, 1이하로 제한한다.
+        Vector3 worldPos = Camera.main.ViewportToWorldPoint(viewPos); //다시 월드 좌표로 변환한다.
+        transform.position = worldPos; //좌표를 적용한다.
     }
 
     //rigidBody가 무언가와 충돌할때 호출되는 함수 입니다.
