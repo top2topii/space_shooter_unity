@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance; //어디서나 접근할 수 있도록 static(정적)으로 자기 자신을 저장할 변수를 만듭니다.
     public Text scoreText; //점수를 표시하는 Text객체를 에디터에서 받아옵니다.
+    public Text readyText;
+
     private int score = 0; //점수를 관리합니다.
     void Awake()
     {
@@ -20,11 +23,35 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
+        StartCoroutine(Ready());
     }
 
     void Update()
     {
 
+    }
+
+    IEnumerator Ready()
+    {
+        spawnManager.instance.SpawnOff();
+
+        int i = 0;
+        while (i < 3)
+        {
+            readyText.enabled = false;
+            yield return new WaitForSeconds(0.5f);
+            readyText.enabled = true;
+            yield return new WaitForSeconds(0.5f);
+            i++;
+        }
+
+        OffReadyText();
+        spawnManager.instance.SpawnOn();
+
+    }
+
+    public void OffReadyText()
+    {
+        readyText.enabled = false;
     }
 }

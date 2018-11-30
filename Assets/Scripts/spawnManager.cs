@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class spawnManager : MonoBehaviour
 {
+    public static spawnManager instance; //어디서나 접근할 수 있도록 static(정적)으로 자기 자신을 저장할 변수를 만듭니다.
+
     public bool enableSpawn = false;
     public GameObject Enemy; //Prefab을 받을 public 변수 입니다.
 
+    void Awake()
+    {
+        if (!instance) //정적으로 자신을 체크합니다.
+            instance = this; //정적으로 자신을 저장합니다.
+    }
+
     void SpawnEnemy()
     {
+
+        //GameManager.instance.OffReadyText();
 
         Debug.Log("SpawnEnemy!");
 
@@ -22,11 +32,20 @@ public class spawnManager : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("SpawnEnemy", 3, 1); //3초후 부터, SpawnEnemy함수를 1초마다 반복해서 실행 시킵니다.
+        InvokeRepeating("SpawnEnemy", 0, 1); //3초후 부터, SpawnEnemy함수를 1초마다 반복해서 실행 시킵니다.
     }
 
     void Update()
     {
 
+    }
+
+    public void SpawnOn()
+    {
+        enableSpawn = true;
+    }
+    public void SpawnOff()
+    {
+        enableSpawn = false;
     }
 }
