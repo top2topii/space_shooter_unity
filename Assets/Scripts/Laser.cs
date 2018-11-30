@@ -28,6 +28,7 @@ public class Laser : MonoBehaviour {
         { //부딪힌 객체가 적인지 검사합니다.
             Instantiate(ParticleFXExplosion, this.transform.position, Quaternion.identity); //폭발 이펙트를 생성합니다.
 
+            GameManager.instance.AddScore(50);
             Destroy(other.gameObject); //부딪힌 적을 지웁니다.
             Destroy(this.gameObject); //자기 자신을 지웁니다.
         }
