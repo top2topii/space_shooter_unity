@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
@@ -59,8 +60,8 @@ public class Player : MonoBehaviour {
                 //세번째 인자로는 객체의 회전값을 넣어주는데요, Quaternion.identity는 회전이 적용되지 않은 값을 나타냅니다.
             
             Destroy(other.gameObject);  //적을 파괴합니다.
-            Destroy(this.gameObject);   //자신을 파괴합니다.
 
+            GameEnd();
         }
     }
 
@@ -76,6 +77,13 @@ public class Player : MonoBehaviour {
             }
             shootTimer += Time.deltaTime; //쿨타임을 카운트 합니다.
         }
+    }
+
+    void GameEnd()
+    {
+        Destroy(this.gameObject);   //자신을 파괴합니다.
+
+        GameManager.instance.GameEnd();
     }
 
 }
