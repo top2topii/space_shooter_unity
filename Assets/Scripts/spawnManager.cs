@@ -26,7 +26,8 @@ public class spawnManager : MonoBehaviour
 
         if (enableSpawn)
         {
-            Instantiate(Enemy, new Vector3(10.0f, randomY, 0f), Quaternion.identity); //랜덤한 위치와, 화면 제일 위에서 Enemy를 하나 생성해줍니다.
+            GameObject a = (GameObject) Instantiate(Enemy, new Vector3(10.0f, randomY, 0f), Quaternion.identity); //랜덤한 위치와, 화면 제일 위에서 Enemy를 하나 생성해줍니다.
+            a.GetComponent<Enemy>().SetScore(100);
         }
     }
 

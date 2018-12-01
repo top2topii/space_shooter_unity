@@ -6,8 +6,7 @@ public class Laser : MonoBehaviour {
 
     //총알이 움직일 속도를 상수로 지정해줍시다.
     private const float moveSpeed = 10.0f;
-
-    public GameObject ParticleFXExplosion;
+    private const int damage = 100;
 
     void Start()
     {
@@ -24,12 +23,12 @@ public class Laser : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        //부딪힌 객체가 적인지 검사합니다.
         if (other.tag.Equals("Enemy"))
-        { //부딪힌 객체가 적인지 검사합니다.
-            Instantiate(ParticleFXExplosion, this.transform.position, Quaternion.identity); //폭발 이펙트를 생성합니다.
+        {
 
-            GameManager.instance.AddScore(50);
-            Destroy(other.gameObject); //부딪힌 적을 지웁니다.
+            other.gameObject.GetComponent<Enemy>().Hit(damage);
+
             Destroy(this.gameObject); //자기 자신을 지웁니다.
         }
     }
