@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\soundManager.cs" />
     <Compile Include="Assets\Scripts\spawnManager.cs" />
+    <None Include="Assets\Fonts\PressStart2P-Regular\OFL.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Volumes/data/Works/unity/space_shooter_unity/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
