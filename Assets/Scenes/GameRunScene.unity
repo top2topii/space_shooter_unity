@@ -250,6 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 591528574}
   readyText: {fileID: 1770982889}
+  gameOverText: {fileID: 1718767265}
 --- !u!224 &468590307
 RectTransform:
   m_ObjectHideFlags: 0
@@ -491,11 +492,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de3d17e8062b43929a2e23d938d2332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 1954599790030300, guid: 0d8ac11bcffc240c39fe04d96a088bc1,
+  ParticleFXExplosion: {fileID: 1954599790030300, guid: 0d8ac11bcffc240c39fe04d96a088bc1,
     type: 2}
   laserPrefab: {fileID: 1245132997894320, guid: d357a9576b01143178fb45bc0c23b9ab,
     type: 2}
   canShoot: 1
+  health: 100
 --- !u!95 &611682430
 Animator:
   serializedVersion: 3
@@ -985,6 +987,81 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundExplosion: {fileID: 8300000, guid: 46fadcf75a3ae4577bda873f7e927171, type: 3}
   soundShoot: {fileID: 8300000, guid: 73d6a3b23cbab43abad353c0aa98a0e1, type: 3}
+--- !u!1 &1718767263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1718767264}
+  - component: {fileID: 1718767266}
+  - component: {fileID: 1718767265}
+  m_Layer: 5
+  m_Name: GameOver Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1718767264
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1718767263}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2028038362}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.000024319, y: 7}
+  m_SizeDelta: {x: 581, y: 65.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1718767265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1718767263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 53be569948d13214199ff90eb711b10b, type: 3}
+    m_FontSize: 64
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 6
+    m_MaxSize: 64
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Game Over
+--- !u!222 &1718767266
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1718767263}
+  m_CullTransparentMesh: 0
 --- !u!1 &1770982887
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,6 +1348,7 @@ RectTransform:
   m_Children:
   - {fileID: 591528573}
   - {fileID: 1770982888}
+  - {fileID: 1718767264}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -6,11 +6,14 @@ public class Player : MonoBehaviour {
 	//움직이는 속도를 정의해 줍니다.
     public const float moveSpeed = 5.0f;
 
-    public GameObject explosionPrefab;
+    public GameObject ParticleFXExplosion;
     public GameObject laserPrefab; //발사할 레이저를 저장합니다.
     public bool canShoot = true; //레이저를 쏠 수 있는 상태인지 검사합니다.
     const float shootDelay = 0.5f; //레이저를 쏘는 주기를 정해줍니다.
     float shootTimer = 0; //시간을 잴 타이머를 만들어줍니다.
+
+    public int health=100;
+    const int collision_damage = 1000;
 
     void Start () {
 
@@ -52,16 +55,7 @@ public class Player : MonoBehaviour {
         //GameObject explosionPrefab;
         if (other.gameObject.tag.Equals("Enemy"))
         {
-            Instantiate(explosionPrefab,
-            // Instantiate는 객체를 하나 생성(복제)합니다 첫번째 인자로는 생성할 객체의 원본을 넣어주고
-                this.transform.position,
-                //두번째 인자로는 생성될 위치를 넣어줍니다. this.transform.position은 자기자신의 위치를 나타냅니다.
-                Quaternion.identity);
-                //세번째 인자로는 객체의 회전값을 넣어주는데요, Quaternion.identity는 회전이 적용되지 않은 값을 나타냅니다.
-            
-            Destroy(other.gameObject);  //적을 파괴합니다.
-
-            GameEnd();
+            Hit(collision_damage);
         }
     }
 
@@ -79,6 +73,18 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public void Hit(int damage=0)
+    {
+        health -= damage;
+        if (health < 0) health = 0;
+
+        if (health == 0)
+        {
+            Explosion();
+            GameEnd();
+        }
+    }
+
     void GameEnd()
     {
         Destroy(this.gameObject);   //자신을 파괴합니다.
@@ -86,4 +92,8 @@ public class Player : MonoBehaviour {
         GameManager.instance.GameEnd();
     }
 
+    void Explosion()
+    {
+        Instantiate(ParticleFXExplosion, this.transform.position, Quaternion.identity); //폭발 이펙트를 생성합니다.
+    }
 }

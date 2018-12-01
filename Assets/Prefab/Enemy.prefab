@@ -118,6 +118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 379bcfaf72b514900be45e2ba8b60d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ParticleFXExplosion: {fileID: 1954599790030300, guid: 0d8ac11bcffc240c39fe04d96a088bc1,
+    type: 2}
+  health: 200
 --- !u!212 &212775777623869722
 SpriteRenderer:
   m_ObjectHideFlags: 1
